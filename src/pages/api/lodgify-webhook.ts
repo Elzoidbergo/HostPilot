@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const hours = (checkIn - Date.now())/36e5;
     if (hours < threshold) {
       const action = event.type==='booking_created'?'New booking':'Cancellation';
-      console.log(\`Notify cleaner (\${action} <\${threshold}h):\`, event.data.bookingId);
+      console.log('Notify cleaner (\${action} <\${threshold}h):', event.data.bookingId);
     }
   }
 
