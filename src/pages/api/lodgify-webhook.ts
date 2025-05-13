@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const event = req.body;
-  console.log('Received Lodgify event X', event.type);
+  console.log('Received Lodgify event', event.type);
   console.log('Prisma client initialized with database URL:', process.env.DATABASE_URL);
 
   const threshold = parseFloat(process.env.CLEAN_NOTIFY_THRESHOLD_HOURS || '72');
@@ -40,8 +40,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   }
 
-  if (event.type === 'booking_message_created') {
-    console.log('Enqueue auto-reply for booking:', event.data.bookingId);
-    res.status(200).json({ message: 'Event processed' });
-  }
+ 
+  console.log('Enqueue auto-reply for booking:', event.data.bookingId);
+  res.status(200).json({ message: 'Event processed' });
+
 }
