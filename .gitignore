@@ -8,6 +8,7 @@ node_modules/
 # Next.js build output
 .next/
 dist/
+src/generated
 
 # local env
 .env
