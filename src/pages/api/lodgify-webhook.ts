@@ -11,7 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const event = req.body;
-  console.log('Received Lodgify event:', event.type);
+  console.log('Received Lodgify event X', event.type);
+  console.log('Prisma client initialized with database URL:', process.env.DATABASE_URL);
 
   const threshold = parseFloat(process.env.CLEAN_NOTIFY_THRESHOLD_HOURS || '72');
   if (['booking_created', 'booking_canceled'].includes(event.type)) {
@@ -21,22 +22,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const action = event.type === 'booking_created' ? 'New booking' : 'Cancellation';
       console.log(`Notify cleaner (${action} <${threshold}h):`, event.data.bookingId);
 
-      // Update the ReservationUpdate table
-      await prisma.reservationUpdate.create({
-        data: {
-          guestName: event.data.guestName,
-          checkInDate: new Date(event.data.checkIn),
-          checkOutDate: new Date(event.data.checkOut),
-          status: event.type === 'booking_created' ? 'created' : 'canceled',
-          listingId: event.data.listingId,
-        },
-      });
+      try {
+        // Update the ReservationUpdate table
+        await prisma.reservationUpdate.create({
+          data: {
+            guestName: event.data.guestName,
+            checkInDate: new Date(event.data.checkIn),
+            checkOutDate: new Date(event.data.checkOut),
+            status: event.type === 'booking_created' ? 'created' : 'canceled',
+            listingId: event.data.listingId,
+          },
+        });
+        console.log('Reservation update successfully created in the database.');
+      } catch (error) {
+        console.error('Error creating reservation update:', error);
+      }
     }
   }
 
   if (event.type === 'booking_message_created') {
     console.log('Enqueue auto-reply for booking:', event.data.bookingId);
+    res.status(200).json({ message: 'Event processed' });
   }
-
-  res.status(200).json({ message: 'Event processed' });
 }

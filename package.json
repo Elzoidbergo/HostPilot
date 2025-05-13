@@ -9,13 +9,13 @@
   "dependencies": {
     "@prisma/client": "^6.7.0",
     "axios": "latest",
-    "next": "13.x",
+    "next": "^15.3.2",
     "pg": "^8.16.0",
     "react": "18.x",
     "react-dom": "18.x"
   },
   "devDependencies": {
-    "@types/node": "20.x",
+    "@types/node": "^20.17.46",
     "@types/react": "18.x",
     "@types/react-dom": "18.x",
     "prisma": "^6.7.0",
