@@ -10,6 +10,7 @@
     "@prisma/client": "6.7.0",
     "@zodios/core": "^10.9.6",
     "axios": "latest",
+    "dotenv": "^16.5.0",
     "next": "^15.3.2",
     "pg": "^8.16.0",
     "prisma": "^6.7.0",
@@ -21,6 +22,7 @@
     "@types/node": "^20.17.46",
     "@types/react": "18.x",
     "@types/react-dom": "18.x",
+    "tsx": "^4.19.4",
     "typescript": "5.x"
   }
 }
