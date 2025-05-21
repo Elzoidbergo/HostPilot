@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { bookingSchema, type LodgifyBooking } from "../lib/lodgifyBookingSchema";
+import type { GetBookingByIdResponse200 } from "../generated/lodgify/types";
 
 export default function LodgifyBookingPage() {
   const [bookingId, setBookingId] = useState('');
-  const [booking, setBooking] = useState<LodgifyBooking | null>(null);
+  const [booking, setBooking] = useState<GetBookingByIdResponse200 | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -14,10 +14,9 @@ export default function LodgifyBookingPage() {
     try {
       const res = await fetch(`/api/lodgify-booking?id=${encodeURIComponent(bookingId)}`);
       if (!res.ok) throw new Error('Failed to fetch booking');
-      //const data : LodgifyBooking = await res.json();
-      const raw = await res.json();
-      const data : LodgifyBooking = bookingSchema.parse(raw); // Now data is LodgifyBooking
-      setBooking(data);
+      const apiResponse = await res.json();
+      const booking: GetBookingByIdResponse200 = apiResponse.data;
+      setBooking(booking);
     } catch (err: any) {
       setError(err.message || 'Unknown error');
     } finally {
@@ -41,7 +40,7 @@ export default function LodgifyBookingPage() {
       {error && <div style={{ color: 'red', marginTop: 16 }}>{error}</div>}
       {booking && (
         <div style={{ marginTop: 24, background: '#f9f9f9', padding: 16, borderRadius: 8 }}>
-          <div><b>Guest Name:</b> {booking.guest.name || 'N/A'}</div>
+          <div><b>Guest Name:</b> {booking.guest?.guest_name?.full_name || 'N/A'}</div>
           <div><b>Property id:</b> {booking.property_id || 'N/A'}</div>
           <div><b>Date of Arrival:</b> {booking.arrival || 'N/A'}</div>
         </div>

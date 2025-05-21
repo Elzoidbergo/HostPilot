@@ -12,7 +12,7 @@ export async function registerLodgifyWebhook() {
 
   // Register for booking_change event
   const payload = { target_url, event: "booking_change" };
-
+  console.log("Registering Lodgify webhook with URL:", target_url);
   const response = await axios.post(
     "https://api.lodgify.com/webhooks/v1/subscribe",
     payload,
