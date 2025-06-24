@@ -31,7 +31,7 @@
             "properties": {
               "name": { "type": "string" },
               "quantity": { "type": "number" },
-              "unit": { "type": "string" },
+              "quantity_unit": { "type": "string" },
               "price_net": { "type": "string" },
               "tax": { "type": "string" },
               "total_price_net": { "type": "string" },
