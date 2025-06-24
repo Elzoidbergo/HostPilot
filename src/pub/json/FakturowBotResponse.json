@@ -76,6 +76,6 @@
     },
     "human_check": { "type": "boolean" },
     "explanation": { "type": "string" },
-    "error": { "type": "string", "enum": ["no_error"], ["unparseable_document"] }
+    "error": { "type": "string", "enum": ["no_error", "unparseable_document"] }
   }
 }
