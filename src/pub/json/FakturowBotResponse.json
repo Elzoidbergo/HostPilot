@@ -5,7 +5,7 @@
       "type": "object",
       "properties": {
         "number": { "type": "string" },
-        "kind": { "type": "string" },
+        "kind": { "type": "string", "enum":["vat", "proforma", "bill", "receipt", "advance", "correction", "vat_mp", "invoice_other", "vat_margin", "kp", "kw", "final", "estimate"] },
         "income": { "type": "string", "enum": ["0", "1"] },
         "seller_name": { "type": "string" },
         "seller_tax_no": { "type": "string" },
