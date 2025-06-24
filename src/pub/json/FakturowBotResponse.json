@@ -21,7 +21,7 @@
         "buyer_country": { "type": "string" },
         "issue_date": { "type": "string", "format": "date" },
         "sell_date": { "type": "string", "format": "date" },
-        "payment_date": { "type": "string", "format": "date" },
+        "payment_to": { "type": "string", "format": "date" },
         "currency": { "type": "string", "default": "PLN" },
         "payment_type": { "type": "string" },
         "positions": {
