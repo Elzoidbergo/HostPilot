@@ -1,0 +1,81 @@
+{
+  "type": "object",
+  "properties": {
+    "invoice": {
+      "type": "object",
+      "properties": {
+        "number": { "type": "string" },
+        "kind": { "type": "string" },
+        "income": { "type": "string", "enum": ["0", "1"] },
+        "seller_name": { "type": "string" },
+        "seller_tax_no": { "type": "string" },
+        "seller_street": { "type": "string" },
+        "seller_city": { "type": "string" },
+        "seller_post_code": { "type": "string" },
+        "seller_country": { "type": "string" },
+        "buyer_name": { "type": "string" },
+        "buyer_tax_no": { "type": "string" },
+        "buyer_street": { "type": "string" },
+        "buyer_city": { "type": "string" },
+        "buyer_post_code": { "type": "string" },
+        "buyer_country": { "type": "string" },
+        "issue_date": { "type": "string", "format": "date" },
+        "sell_date": { "type": "string", "format": "date" },
+        "payment_date": { "type": "string", "format": "date" },
+        "currency": { "type": "string", "default": "PLN" },
+        "payment_type": { "type": "string" },
+        "positions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "quantity": { "type": "number" },
+              "unit": { "type": "string" },
+              "price_net": { "type": "string" },
+              "tax": { "type": "string" },
+              "total_price_net": { "type": "string" },
+              "total_price_gross": { "type": "string" },
+              "cost_dimension1": {
+                "type": "object",
+                "properties": {
+                  "Photography": { "type": "string" },
+                  "Madalińskiego 5": { "type": "string" },
+                  "Plac Solny 6": { "type": "string" },
+                  "Rynek 16": { "type": "string" },
+                  "Mikołaja 61": { "type": "string" },
+                  "General": { "type": "string" }
+                },
+                "required": [
+                  "Photography",
+                  "Madalińskiego 5",
+                  "Plac Solny 6",
+                  "Rynek 16",
+                  "Mikołaja 61",
+                  "General"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "total_price_gross",
+              "cost_dimension1"
+            ]
+          }
+        },
+        "reverse_charge": { "type": "boolean" }
+      },
+      "required": [
+        "number",
+        "kind",
+        "income",
+        "seller_name",
+        "buyer_name",
+        "positions"
+      ]
+    },
+    "human_check": { "type": "boolean" },
+    "explanation": { "type": "string" },
+    "error": { "type": "string", "enum": ["unparseable_document"] }
+  }
+}
