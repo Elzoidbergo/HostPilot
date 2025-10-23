@@ -43,6 +43,7 @@
                   "Madalińskiego 5": { "type": "string" },
                   "Plac Solny 6": { "type": "string" },
                   "Rynek 16": { "type": "string" },
+                  "Rynek 15": { "type": "string" },
                   "Mikołaja 61": { "type": "string" },
                   "Łukasińskiego 4": { "type": "string" },
                   "General": { "type": "string" }
@@ -83,3 +84,4 @@
   }
 
 }
+
